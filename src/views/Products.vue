@@ -1,52 +1,131 @@
 <template>
-  <div class="products-container">
-    <el-card>
+  <div class="products-container fade-in-up">
+    <el-card class="products-card">
       <template #header>
         <div class="header-content">
-          <h2>商品管理</h2>
-          <el-button type="primary" @click="showAddDialog = true"> 新增商品 </el-button>
+          <div class="header-left">
+            <div class="title-section">
+              <div class="title-icon">
+                <el-icon><Goods /></el-icon>
+              </div>
+              <div class="title-text">
+                <h2>商品管理</h2>
+                <p>管理系統中的所有商品資訊</p>
+              </div>
+            </div>
+          </div>
+          <div class="header-right">
+            <el-button type="primary" @click="showAddDialog = true" class="add-btn">
+              <el-icon><Plus /></el-icon>
+              新增商品
+            </el-button>
+          </div>
         </div>
       </template>
 
-      <el-table :data="products" v-loading="loading" style="width: 100%">
-        <el-table-column prop="id" label="ID" width="80" />
-        <el-table-column prop="name" label="商品名稱" />
-        <el-table-column prop="price" label="價格" />
-        <el-table-column prop="category_id" label="分類ID" />
-        <el-table-column prop="description" label="描述" />
-      </el-table>
+      <div class="table-container">
+        <el-table
+          :data="products"
+          v-loading="loading"
+          class="products-table"
+          :header-cell-style="{
+            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            color: 'white',
+          }"
+        >
+          <el-table-column prop="id" label="ID" width="80" align="center">
+            <template #default="scope">
+              <el-tag type="info" effect="plain">{{ scope.row.id }}</el-tag>
+            </template>
+          </el-table-column>
+          <el-table-column prop="name" label="商品名稱" min-width="150">
+            <template #default="scope">
+              <div class="product-info">
+                <div class="product-icon">
+                  <el-icon><Goods /></el-icon>
+                </div>
+                <span class="product-name">{{ scope.row.name }}</span>
+              </div>
+            </template>
+          </el-table-column>
+          <el-table-column prop="price" label="價格" width="120" align="center">
+            <template #default="scope">
+              <el-tag type="success" effect="plain"> NT$ {{ scope.row.price }} </el-tag>
+            </template>
+          </el-table-column>
+          <el-table-column prop="category_id" label="分類ID" width="100" align="center">
+            <template #default="scope">
+              <el-tag type="warning" effect="plain">{{ scope.row.category_id }}</el-tag>
+            </template>
+          </el-table-column>
+          <el-table-column prop="description" label="描述" min-width="200">
+            <template #default="scope">
+              <div class="description-text">
+                {{ scope.row.description || '無描述' }}
+              </div>
+            </template>
+          </el-table-column>
+        </el-table>
+      </div>
     </el-card>
 
     <!-- 新增商品對話框 -->
-    <el-dialog v-model="showAddDialog" title="新增商品" width="500px">
-      <el-form :model="newProduct" :rules="rules" ref="productFormRef" label-width="100px">
+    <el-dialog v-model="showAddDialog" title="新增商品" width="600px" class="product-dialog">
+      <el-form
+        :model="newProduct"
+        :rules="rules"
+        ref="productFormRef"
+        label-width="100px"
+        class="product-form"
+      >
         <el-form-item label="商品名稱" prop="name">
-          <el-input v-model="newProduct.name" placeholder="請輸入商品名稱" />
+          <el-input v-model="newProduct.name" placeholder="請輸入商品名稱" class="form-input">
+            <template #prefix>
+              <el-icon><Goods /></el-icon>
+            </template>
+          </el-input>
         </el-form-item>
 
         <el-form-item label="價格" prop="price">
-          <el-input-number v-model="newProduct.price" :min="0" :precision="2" style="width: 100%" />
+          <el-input-number
+            v-model="newProduct.price"
+            :min="0"
+            :precision="2"
+            style="width: 100%"
+            class="form-input-number"
+            placeholder="請輸入價格"
+          />
         </el-form-item>
 
         <el-form-item label="分類ID" prop="category_id">
-          <el-input-number v-model="newProduct.category_id" :min="1" style="width: 100%" />
+          <el-input-number
+            v-model="newProduct.category_id"
+            :min="1"
+            style="width: 100%"
+            class="form-input-number"
+            placeholder="請輸入分類ID"
+          />
         </el-form-item>
 
         <el-form-item label="描述" prop="description">
           <el-input
             v-model="newProduct.description"
             type="textarea"
-            :rows="3"
+            :rows="4"
             placeholder="請輸入商品描述"
+            class="form-textarea"
           />
         </el-form-item>
       </el-form>
 
       <template #footer>
-        <span class="dialog-footer">
-          <el-button @click="showAddDialog = false">取消</el-button>
-          <el-button type="primary" @click="addProduct" :loading="adding"> 確定 </el-button>
-        </span>
+        <div class="dialog-footer">
+          <el-button @click="showAddDialog = false" class="cancel-btn"> 取消 </el-button>
+          <el-button type="primary" @click="addProduct" :loading="adding" class="confirm-btn">
+            <el-icon v-if="!adding"><Plus /></el-icon>
+            {{ adding ? '新增中...' : '確定' }}
+          </el-button>
+        </div>
       </template>
     </el-dialog>
   </div>
@@ -55,9 +134,14 @@
 <script>
 import api from '../api'
 import { ElMessage } from 'element-plus'
+import { Goods, Plus } from '@element-plus/icons-vue'
 
 export default {
   name: 'ProductsView',
+  components: {
+    Goods,
+    Plus,
+  },
   data() {
     return {
       loading: false,
@@ -131,22 +215,273 @@ export default {
 <style scoped>
 .products-container {
   padding: 20px;
+  min-height: calc(100vh - 70px);
+}
+
+.products-card {
+  border-radius: 16px;
+  overflow: hidden;
 }
 
 .header-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
-.header-content h2 {
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.title-section {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.title-icon {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 20px;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.title-text h2 {
+  margin: 0 0 4px 0;
+  color: #2c3e50;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.title-text p {
   margin: 0;
-  color: #409eff;
+  color: #8e9aaf;
+  font-size: 14px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+.add-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  border-radius: 12px;
+  padding: 12px 20px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.add-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+.table-container {
+  margin-top: 20px;
+}
+
+.products-table {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.products-table :deep(.el-table__header) {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.products-table :deep(.el-table__header th) {
+  background: transparent !important;
+  color: white !important;
+  font-weight: 600 !important;
+  border-bottom: none !important;
+}
+
+.products-table :deep(.el-table__body tr:hover) {
+  background: rgba(102, 126, 234, 0.05) !important;
+}
+
+.product-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.product-icon {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 14px;
+}
+
+.product-name {
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.description-text {
+  color: #5a6c7d;
+  line-height: 1.5;
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 對話框樣式 */
+.product-dialog :deep(.el-dialog__header) {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 20px 24px;
+}
+
+.product-dialog :deep(.el-dialog__title) {
+  color: white;
+  font-weight: 600;
+}
+
+.product-form {
+  padding: 20px 0;
+}
+
+.form-input :deep(.el-input__wrapper) {
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.form-input :deep(.el-input__wrapper:hover) {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  border-color: rgba(102, 126, 234, 0.3);
+}
+
+.form-input :deep(.el-input__wrapper.is-focus) {
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.form-input-number :deep(.el-input-number__decrease),
+.form-input-number :deep(.el-input-number__increase) {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  color: white;
+}
+
+.form-input-number :deep(.el-input__wrapper) {
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.form-textarea :deep(.el-textarea__inner) {
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  resize: vertical;
+}
+
+.form-textarea :deep(.el-textarea__inner:hover) {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  border-color: rgba(102, 126, 234, 0.3);
+}
+
+.form-textarea :deep(.el-textarea__inner:focus) {
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
 .dialog-footer {
   display: flex;
   justify-content: flex-end;
-  gap: 10px;
+  gap: 12px;
+  padding-top: 20px;
+}
+
+.cancel-btn {
+  border-radius: 12px;
+  padding: 12px 24px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.confirm-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  border-radius: 12px;
+  padding: 12px 24px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.confirm-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+  .products-container {
+    padding: 10px;
+  }
+
+  .header-content {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+  }
+
+  .title-section {
+    justify-content: center;
+  }
+
+  .add-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .description-text {
+    max-width: 150px;
+  }
 }
 </style>
