@@ -62,15 +62,59 @@ export default {
         await this.$refs.formRef.validate()
         this.loading = true
 
+        console.log('🔍 開始登入請求...')
+
         const res = await api.post('/auth/login', {
           username: this.form.username,
           password: this.form.password,
         })
 
-        localStorage.setItem('token', res.data.token)
+        // 除錯：檢查回應格式
+        console.log('🔍 完整登入回應:', res)
+        console.log('🔍 回應狀態:', res.status)
+        console.log('🔍 回應資料:', res.data)
+        console.log('🔍 回應資料類型:', typeof res.data)
+
+        // 檢查 token 格式 - 嘗試多種可能的格式
+        let token = null
+        if (res.data && typeof res.data === 'object') {
+          // 檢查多層結構的 token
+          token =
+            res.data.token ||
+            res.data.data?.token ||
+            res.data.access_token ||
+            res.data.accessToken ||
+            res.data.jwt
+          console.log('🔍 嘗試提取 token:', token ? token.substring(0, 20) + '...' : 'null')
+        }
+
+        if (!token) {
+          console.error('❌ 無法從回應中提取 token')
+          console.error('❌ 回應資料結構:', JSON.stringify(res.data, null, 2))
+          throw new Error('回應中沒有找到 token')
+        }
+
+        // 儲存 token 到 localStorage
+        try {
+          localStorage.setItem('token', token)
+          console.log('✅ Token 已儲存到 localStorage')
+
+          // 驗證儲存是否成功
+          const storedToken = localStorage.getItem('token')
+          console.log('🔍 驗證儲存結果:', storedToken ? '成功' : '失敗')
+          console.log(
+            '🔍 儲存的 token:',
+            storedToken ? storedToken.substring(0, 20) + '...' : 'null',
+          )
+        } catch (storageError) {
+          console.error('❌ localStorage 儲存失敗:', storageError)
+          throw new Error('無法儲存 token 到 localStorage')
+        }
+
         ElMessage.success('登入成功！')
         this.$router.push('/users')
       } catch (error) {
+        console.error('❌ 登入錯誤:', error)
         if (error.response?.data?.message) {
           ElMessage.error(error.response.data.message)
         } else {

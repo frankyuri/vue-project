@@ -80,9 +80,16 @@ export default {
           params.keyword = this.searchKeyword
         }
 
+        console.log('🔍 開始取得用戶列表...')
+        console.log('🔍 當前 token:', localStorage.getItem('token') ? '存在' : '不存在')
+
         const res = await api.get('/api/users', { params })
+        console.log('✅ 用戶列表回應:', res.data)
         this.users = res.data.users
-      } catch {
+      } catch (error) {
+        console.error('❌ 取得用戶列表失敗:', error)
+        console.error('❌ 錯誤狀態:', error.response?.status)
+        console.error('❌ 錯誤訊息:', error.response?.data)
         ElMessage.error('取得用戶列表失敗')
       } finally {
         this.loading = false

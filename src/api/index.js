@@ -9,16 +9,28 @@ const instance = axios.create({
   timeout: 10000,
 })
 
-// 請求攔截器：自動加入 JWT token
+// 請求攔截器：自動加入 JWT token 和 ngrok header
 instance.interceptors.request.use(
   (config) => {
+    // 加入 ngrok-skip-browser-warning header 來避開警告頁面
+    config.headers['ngrok-skip-browser-warning'] = 'true'
+    config.headers['User-Agent'] = 'Custom-API-Client/1.0'
+
     const token = localStorage.getItem('token')
+    console.log('🔍 當前請求 URL:', config.url)
+    console.log('🔍 從 localStorage 讀取的 token:', token ? token.substring(0, 20) + '...' : 'null')
+
     if (token) {
       config.headers.Authorization = `Bearer ${token}`
+      console.log('✅ Authorization header 已設定')
+    } else {
+      console.log('⚠️ 沒有找到 token，跳過 Authorization header')
     }
+
     return config
   },
   (error) => {
+    console.error('❌ 請求攔截器錯誤:', error)
     return Promise.reject(error)
   },
 )
