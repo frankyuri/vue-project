@@ -29,7 +29,7 @@
           v-loading="loading"
           class="products-table"
           :header-cell-style="{
-            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            background: 'var(--primary-gradient)',
             color: 'white',
           }"
         >
@@ -245,26 +245,26 @@ export default {
 .title-icon {
   width: 50px;
   height: 50px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--primary-gradient);
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
   font-size: 20px;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  box-shadow: var(--shadow-md);
 }
 
 .title-text h2 {
   margin: 0 0 4px 0;
-  color: #2c3e50;
+  color: var(--text-primary);
   font-size: 24px;
   font-weight: 600;
 }
 
 .title-text p {
   margin: 0;
-  color: #8e9aaf;
+  color: var(--text-muted);
   font-size: 14px;
 }
 
@@ -274,7 +274,7 @@ export default {
 }
 
 .add-btn {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--primary-gradient);
   border: none;
   border-radius: 12px;
   padding: 12px 20px;
@@ -282,13 +282,13 @@ export default {
   display: flex;
   align-items: center;
   gap: 8px;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  transition: all var(--transition-normal) ease;
+  box-shadow: var(--shadow-md);
 }
 
 .add-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+  box-shadow: var(--shadow-lg);
 }
 
 .table-container {
@@ -301,7 +301,7 @@ export default {
 }
 
 .products-table :deep(.el-table__header) {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--primary-gradient);
 }
 
 .products-table :deep(.el-table__header th) {
@@ -312,7 +312,7 @@ export default {
 }
 
 .products-table :deep(.el-table__body tr:hover) {
-  background: rgba(102, 126, 234, 0.05) !important;
+  background: rgba(6, 182, 212, 0.05) !important;
 }
 
 .product-info {
@@ -324,7 +324,7 @@ export default {
 .product-icon {
   width: 32px;
   height: 32px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--primary-gradient);
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -335,7 +335,7 @@ export default {
 
 .product-name {
   font-weight: 500;
-  color: #2c3e50;
+  color: var(--text-primary);
 }
 
 .description-text {
@@ -349,7 +349,7 @@ export default {
 
 /* 對話框樣式 */
 .product-dialog :deep(.el-dialog__header) {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--primary-gradient);
   color: white;
   padding: 20px 24px;
 }
@@ -371,18 +371,18 @@ export default {
 }
 
 .form-input :deep(.el-input__wrapper:hover) {
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-  border-color: rgba(102, 126, 234, 0.3);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(6, 182, 212, 0.3);
 }
 
 .form-input :deep(.el-input__wrapper.is-focus) {
-  border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.1);
 }
 
 .form-input-number :deep(.el-input-number__decrease),
 .form-input-number :deep(.el-input-number__increase) {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--primary-gradient);
   border: none;
   color: white;
 }
@@ -403,13 +403,13 @@ export default {
 }
 
 .form-textarea :deep(.el-textarea__inner:hover) {
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-  border-color: rgba(102, 126, 234, 0.3);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(6, 182, 212, 0.3);
 }
 
 .form-textarea :deep(.el-textarea__inner:focus) {
-  border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.1);
 }
 
 .dialog-footer {
@@ -427,7 +427,7 @@ export default {
 }
 
 .confirm-btn {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--primary-gradient);
   border: none;
   border-radius: 12px;
   padding: 12px 24px;
@@ -435,13 +435,13 @@ export default {
   display: flex;
   align-items: center;
   gap: 6px;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  transition: all var(--transition-normal) ease;
+  box-shadow: var(--shadow-md);
 }
 
 .confirm-btn:hover {
   transform: translateY(-1px);
-  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+  box-shadow: var(--shadow-lg);
 }
 
 @keyframes fadeInUp {

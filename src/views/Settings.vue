@@ -142,26 +142,26 @@ export default {
 .title-icon {
   width: 50px;
   height: 50px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--primary-gradient);
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
   font-size: 20px;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  box-shadow: var(--shadow-md);
 }
 
 .title-text h2 {
   margin: 0 0 4px 0;
-  color: #2c3e50;
+  color: var(--text-primary);
   font-size: 24px;
   font-weight: 600;
 }
 
 .title-text p {
   margin: 0;
-  color: #8e9aaf;
+  color: var(--text-muted);
   font-size: 14px;
 }
 
@@ -189,7 +189,7 @@ export default {
 }
 
 .settings-descriptions :deep(.el-descriptions__label) {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--primary-gradient);
   color: white;
   font-weight: 600;
   padding: 16px 20px;
@@ -206,12 +206,12 @@ export default {
   display: flex;
   align-items: center;
   gap: 12px;
-  color: #2c3e50;
+  color: var(--text-primary);
   font-weight: 500;
 }
 
 .setting-value .el-icon {
-  color: #667eea;
+  color: var(--primary-color);
   font-size: 16px;
 }
 
@@ -235,15 +235,15 @@ export default {
 }
 
 .refresh-btn {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--primary-gradient);
   border: none;
   color: white;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  box-shadow: var(--shadow-md);
 }
 
 .refresh-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+  box-shadow: var(--shadow-lg);
 }
 
 .clear-btn {

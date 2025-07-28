@@ -20,9 +20,51 @@ const showNavigation = computed(() => {
 </template>
 
 <style>
+:root {
+  /* 主色調 - 現代青色系 */
+  --primary-color: #06b6d4;
+  --primary-light: #22d3ee;
+  --primary-dark: #0891b2;
+  --primary-gradient: linear-gradient(135deg, #06b6d4 0%, #0ea5e9 100%);
+
+  /* 輔助色調 */
+  --secondary-color: #64748b;
+  --accent-color: #f59e0b;
+  --success-color: #10b981;
+  --warning-color: #f59e0b;
+  --danger-color: #ef4444;
+  --info-color: #3b82f6;
+
+  /* 中性色調 */
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --text-muted: #94a3b8;
+  --text-light: #cbd5e1;
+
+  /* 背景色調 */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-tertiary: #f1f5f9;
+  --bg-overlay: rgba(255, 255, 255, 0.95);
+
+  /* 邊框和陰影 */
+  --border-color: #e2e8f0;
+  --border-light: #f1f5f9;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+
+  /* 動畫時間 */
+  --transition-fast: 0.15s;
+  --transition-normal: 0.3s;
+  --transition-slow: 0.5s;
+}
+
 #app {
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--primary-gradient);
   background-attachment: fixed;
 }
 
@@ -44,7 +86,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
+  color: var(--text-primary);
   line-height: 1.6;
 }
 
@@ -55,39 +97,39 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: var(--bg-tertiary);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #c1c1c1;
+  background: var(--text-muted);
   border-radius: 4px;
-  transition: background 0.3s ease;
+  transition: background var(--transition-normal) ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #a8a8a8;
+  background: var(--text-secondary);
 }
 
 /* Element Plus 全域樣式優化 */
 .el-card {
   border-radius: 16px !important;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08) !important;
+  box-shadow: var(--shadow-lg) !important;
   border: none !important;
   backdrop-filter: blur(20px);
-  background: rgba(255, 255, 255, 0.95) !important;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  background: var(--bg-overlay) !important;
+  transition: all var(--transition-slow) cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 .el-card:hover {
   transform: translateY(-2px) !important;
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12) !important;
+  box-shadow: var(--shadow-2xl) !important;
 }
 
 .el-button {
   border-radius: 12px !important;
   font-weight: 600 !important;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transition: all var(--transition-normal) cubic-bezier(0.4, 0, 0.2, 1) !important;
   position: relative !important;
   overflow: hidden !important;
 }
@@ -109,61 +151,61 @@ body {
 
 .el-button:hover {
   transform: translateY(-2px) !important;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+  box-shadow: var(--shadow-lg) !important;
 }
 
 .el-button:active {
   transform: translateY(0) !important;
-  transition: all 0.1s ease !important;
+  transition: all var(--transition-fast) ease !important;
 }
 
 .el-input__wrapper {
   border-radius: 12px !important;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06) !important;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow: var(--shadow-sm) !important;
+  transition: all var(--transition-normal) cubic-bezier(0.4, 0, 0.2, 1) !important;
   border: 2px solid transparent !important;
 }
 
 .el-input__wrapper:hover {
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1) !important;
+  box-shadow: var(--shadow-md) !important;
   transform: translateY(-1px) !important;
 }
 
 .el-input__wrapper.is-focus {
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15) !important;
-  border-color: #667eea !important;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15) !important;
+  border-color: var(--primary-color) !important;
 }
 
 .el-table {
   border-radius: 16px !important;
   overflow: hidden !important;
-  transition: all 0.3s ease !important;
+  transition: all var(--transition-normal) ease !important;
 }
 
 .el-table th {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  background: var(--primary-gradient) !important;
   color: white !important;
   font-weight: 600 !important;
-  transition: all 0.3s ease !important;
+  transition: all var(--transition-normal) ease !important;
 }
 
 .el-table tr {
-  transition: all 0.3s ease !important;
+  transition: all var(--transition-normal) ease !important;
 }
 
 .el-table tr:hover {
-  background: rgba(102, 126, 234, 0.05) !important;
+  background: rgba(79, 70, 229, 0.05) !important;
   transform: scale(1.01) !important;
 }
 
 .el-dialog {
   border-radius: 20px !important;
   overflow: hidden !important;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transition: all var(--transition-normal) cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 .el-dialog__header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  background: var(--primary-gradient) !important;
   color: white !important;
   padding: 24px 28px !important;
 }
@@ -180,7 +222,7 @@ body {
 .el-menu-item {
   border-radius: 12px !important;
   margin: 6px 10px !important;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transition: all var(--transition-normal) cubic-bezier(0.4, 0, 0.2, 1) !important;
   position: relative !important;
   overflow: hidden !important;
 }
@@ -201,34 +243,34 @@ body {
 }
 
 .el-menu-item:hover {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  background: var(--primary-gradient) !important;
   color: white !important;
   transform: translateX(6px) scale(1.02) !important;
-  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4) !important;
+  box-shadow: var(--shadow-lg) !important;
 }
 
 .el-menu-item.is-active {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  background: var(--primary-gradient) !important;
   color: white !important;
-  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4) !important;
+  box-shadow: var(--shadow-lg) !important;
   transform: translateX(6px) scale(1.02) !important;
 }
 
 /* 標籤動畫效果 */
 .el-tag {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transition: all var(--transition-normal) cubic-bezier(0.4, 0, 0.2, 1) !important;
   position: relative !important;
   overflow: hidden !important;
 }
 
 .el-tag:hover {
   transform: translateY(-1px) scale(1.05) !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  box-shadow: var(--shadow-md) !important;
 }
 
 /* 表單元素動畫 */
 .el-form-item {
-  transition: all 0.3s ease !important;
+  transition: all var(--transition-normal) ease !important;
 }
 
 .el-form-item:hover {
@@ -351,8 +393,20 @@ body {
 
 /* 深色模式支援 */
 @media (prefers-color-scheme: dark) {
+  :root {
+    --text-primary: #f1f5f9;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --bg-tertiary: #334155;
+    --bg-overlay: rgba(15, 23, 42, 0.95);
+    --border-color: #334155;
+    --border-light: #475569;
+  }
+
   .el-card {
-    background: rgba(30, 30, 30, 0.95) !important;
+    background: var(--bg-overlay) !important;
   }
 }
 </style>

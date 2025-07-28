@@ -126,16 +126,16 @@ export default {
 .shape {
   position: absolute;
   border-radius: 50%;
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(14, 165, 233, 0.1));
   animation: float 10s ease-in-out infinite;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all var(--transition-normal) cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
 }
 
 .shape:hover {
   transform: scale(1.3) rotate(15deg);
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
-  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(14, 165, 233, 0.2));
+  box-shadow: var(--shadow-md);
 }
 
 .shape-1 {
@@ -208,17 +208,17 @@ export default {
   text-align: center;
   margin-bottom: 100px;
   padding: 80px 40px;
-  background: rgba(255, 255, 255, 0.95);
+  background: var(--bg-overlay);
   backdrop-filter: blur(25px);
   border-radius: 32px;
-  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--shadow-2xl);
+  border: 1px solid var(--border-color);
+  transition: all var(--transition-slow) cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .home-header:hover {
   transform: translateY(-8px);
-  box-shadow: 0 35px 100px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-2xl);
   backdrop-filter: blur(30px);
 }
 
@@ -230,15 +230,15 @@ export default {
   width: 120px;
   height: 120px;
   margin: 0 auto;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--primary-gradient);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
   font-size: 48px;
-  box-shadow: 0 16px 50px rgba(102, 126, 234, 0.4);
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--shadow-xl);
+  transition: all var(--transition-slow) cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
 }
@@ -260,27 +260,27 @@ export default {
 
 .logo-icon:hover {
   transform: scale(1.15) rotate(10deg);
-  box-shadow: 0 20px 60px rgba(102, 126, 234, 0.5);
+  box-shadow: var(--shadow-2xl);
 }
 
 .home-header h1 {
   margin: 0 0 24px 0;
-  color: #2c3e50;
+  color: var(--text-primary);
   font-size: 56px;
   font-weight: 700;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--primary-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  transition: all 0.3s ease;
+  transition: all var(--transition-normal) ease;
 }
 
 .home-header p {
   margin: 0 0 40px 0;
-  color: #5a6c7d;
+  color: var(--text-secondary);
   font-size: 20px;
   line-height: 1.6;
-  transition: all 0.3s ease;
+  transition: all var(--transition-normal) ease;
 }
 
 .tech-stack {
@@ -291,13 +291,13 @@ export default {
 }
 
 .tech-tag {
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all var(--transition-normal) cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
 }
 
 .tech-tag:hover {
   transform: translateY(-4px) scale(1.1);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow-md);
 }
 
 .feature-grid {
@@ -308,14 +308,14 @@ export default {
 }
 
 .feature-card {
-  background: rgba(255, 255, 255, 0.95);
+  background: var(--bg-overlay);
   backdrop-filter: blur(25px);
   border-radius: 24px;
   padding: 48px 36px;
   text-align: center;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--shadow-xl);
+  border: 1px solid var(--border-color);
+  transition: all var(--transition-slow) cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   position: relative;
   overflow: hidden;
@@ -328,7 +328,7 @@ export default {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+  background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.1), transparent);
   transition: left 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -338,7 +338,7 @@ export default {
 
 .feature-card:hover {
   transform: translateY(-12px) scale(1.02);
-  box-shadow: 0 35px 100px rgba(102, 126, 234, 0.25);
+  box-shadow: var(--shadow-2xl);
   backdrop-filter: blur(30px);
 }
 
@@ -346,15 +346,15 @@ export default {
   width: 100px;
   height: 100px;
   margin: 0 auto 32px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--primary-gradient);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
   font-size: 40px;
-  box-shadow: 0 12px 40px rgba(102, 126, 234, 0.4);
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--shadow-lg);
+  transition: all var(--transition-slow) cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
 }
@@ -376,23 +376,23 @@ export default {
 
 .feature-card:hover .feature-icon {
   transform: scale(1.15) rotate(5deg);
-  box-shadow: 0 16px 50px rgba(102, 126, 234, 0.5);
+  box-shadow: var(--shadow-xl);
 }
 
 .feature-card h3 {
   margin: 0 0 20px 0;
-  color: #2c3e50;
+  color: var(--text-primary);
   font-size: 28px;
   font-weight: 600;
-  transition: all 0.3s ease;
+  transition: all var(--transition-normal) ease;
 }
 
 .feature-card p {
   margin: 0 0 32px 0;
-  color: #5a6c7d;
+  color: var(--text-secondary);
   line-height: 1.6;
   font-size: 18px;
-  transition: all 0.3s ease;
+  transition: all var(--transition-normal) ease;
 }
 
 .feature-actions {
@@ -400,7 +400,7 @@ export default {
 }
 
 .feature-btn {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--primary-gradient);
   border: none;
   border-radius: 16px;
   padding: 12px 24px;
@@ -408,7 +408,7 @@ export default {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all var(--transition-normal) cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
 }
@@ -430,39 +430,39 @@ export default {
 
 .feature-btn:hover {
   transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
+  box-shadow: var(--shadow-lg);
 }
 
 .login-section {
   text-align: center;
-  background: rgba(255, 255, 255, 0.95);
+  background: var(--bg-overlay);
   backdrop-filter: blur(25px);
   border-radius: 32px;
   padding: 80px 60px;
-  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--shadow-2xl);
+  border: 1px solid var(--border-color);
+  transition: all var(--transition-slow) cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .login-section:hover {
   transform: translateY(-8px);
-  box-shadow: 0 35px 100px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-2xl);
   backdrop-filter: blur(30px);
 }
 
 .login-section h2 {
   margin: 0 0 20px 0;
-  color: #2c3e50;
+  color: var(--text-primary);
   font-size: 40px;
   font-weight: 600;
-  transition: all 0.3s ease;
+  transition: all var(--transition-normal) ease;
 }
 
 .login-section p {
   margin: 0 0 50px 0;
-  color: #5a6c7d;
+  color: var(--text-secondary);
   font-size: 20px;
-  transition: all 0.3s ease;
+  transition: all var(--transition-normal) ease;
 }
 
 .login-buttons {
@@ -480,7 +480,7 @@ export default {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all var(--transition-normal) cubic-bezier(0.4, 0, 0.2, 1);
   min-width: 160px;
   justify-content: center;
   position: relative;
@@ -503,29 +503,29 @@ export default {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--primary-gradient);
   border: none;
   color: white;
-  box-shadow: 0 12px 40px rgba(102, 126, 234, 0.4);
+  box-shadow: var(--shadow-lg);
 }
 
 .btn-primary:hover {
   transform: translateY(-4px) scale(1.05);
-  box-shadow: 0 20px 50px rgba(102, 126, 234, 0.5);
+  box-shadow: var(--shadow-xl);
 }
 
 .btn-secondary {
-  background: rgba(255, 255, 255, 0.9);
-  border: 2px solid #667eea;
-  color: #667eea;
+  background: var(--bg-secondary);
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
   backdrop-filter: blur(15px);
 }
 
 .btn-secondary:hover {
-  background: #667eea;
+  background: var(--primary-color);
   color: white;
   transform: translateY(-4px) scale(1.05);
-  box-shadow: 0 12px 40px rgba(102, 126, 234, 0.4);
+  box-shadow: var(--shadow-lg);
 }
 
 @keyframes fadeInUp {

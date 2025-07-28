@@ -36,7 +36,7 @@
           v-loading="loading"
           class="users-table"
           :header-cell-style="{
-            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            background: 'var(--primary-gradient)',
             color: 'white',
           }"
         >
@@ -252,26 +252,26 @@ export default {
 .title-icon {
   width: 50px;
   height: 50px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--primary-gradient);
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
   font-size: 20px;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  box-shadow: var(--shadow-md);
 }
 
 .title-text h2 {
   margin: 0 0 4px 0;
-  color: #2c3e50;
+  color: var(--text-primary);
   font-size: 24px;
   font-weight: 600;
 }
 
 .title-text p {
   margin: 0;
-  color: #8e9aaf;
+  color: var(--text-muted);
   font-size: 14px;
 }
 
@@ -292,13 +292,13 @@ export default {
 }
 
 .search-input :deep(.el-input__wrapper:hover) {
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-  border-color: rgba(102, 126, 234, 0.3);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(6, 182, 212, 0.3);
 }
 
 .search-input :deep(.el-input__wrapper.is-focus) {
-  border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.1);
 }
 
 .table-container {
@@ -311,7 +311,7 @@ export default {
 }
 
 .users-table :deep(.el-table__header) {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--primary-gradient);
 }
 
 .users-table :deep(.el-table__header th) {
@@ -322,7 +322,7 @@ export default {
 }
 
 .users-table :deep(.el-table__body tr:hover) {
-  background: rgba(102, 126, 234, 0.05) !important;
+  background: rgba(6, 182, 212, 0.05) !important;
 }
 
 .user-info {
@@ -332,24 +332,24 @@ export default {
 }
 
 .user-avatar {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--primary-gradient);
   color: white;
 }
 
 .username {
   font-weight: 500;
-  color: #2c3e50;
+  color: var(--text-primary);
 }
 
 .email-info {
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #5a6c7d;
+  color: var(--text-secondary);
 }
 
 .email-info .el-icon {
-  color: #667eea;
+  color: var(--primary-color);
 }
 
 .action-buttons {
@@ -368,13 +368,13 @@ export default {
 }
 
 .view-btn {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--primary-gradient);
   border: none;
 }
 
 .view-btn:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  box-shadow: var(--shadow-md);
 }
 
 .delete-btn {
@@ -413,7 +413,7 @@ export default {
 }
 
 .detail-label .el-icon {
-  color: #667eea;
+  color: var(--primary-color);
 }
 
 .detail-value {

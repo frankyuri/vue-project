@@ -218,7 +218,7 @@ export default {
 .shape {
   position: absolute;
   border-radius: 50%;
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(14, 165, 233, 0.1));
   animation: float 6s ease-in-out infinite;
 }
 
@@ -291,41 +291,67 @@ export default {
 }
 
 .logo-icon {
-  width: 80px;
-  height: 80px;
+  width: 88px;
+  height: 88px;
   margin: 0 auto;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--primary-gradient);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
-  font-size: 32px;
-  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.3);
+  font-size: 36px;
+  box-shadow: var(--shadow-xl);
+  transition: all var(--transition-slow) cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.logo-icon::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.8s;
+}
+
+.logo-icon:hover::before {
+  left: 100%;
+}
+
+.logo-icon:hover {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: var(--shadow-2xl);
 }
 
 .register-header h1 {
-  margin: 0 0 8px 0;
-  color: #2c3e50;
-  font-size: 28px;
+  margin: 0 0 12px 0;
+  color: var(--primary-color);
+  font-size: 32px;
   font-weight: 700;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--primary-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  transition: all var(--transition-normal) ease;
 }
 
 .register-header h2 {
-  margin: 0 0 8px 0;
-  color: #5a6c7d;
-  font-size: 18px;
+  margin: 0 0 12px 0;
+  color: var(--text-secondary);
+  font-size: 20px;
   font-weight: 500;
+  transition: all var(--transition-normal) ease;
 }
 
 .register-header p {
   margin: 0;
-  color: #8e9aaf;
-  font-size: 14px;
+  color: var(--text-muted);
+  font-size: 16px;
+  transition: all var(--transition-normal) ease;
 }
 
 .register-form {
@@ -341,19 +367,19 @@ export default {
 
 .custom-input :deep(.el-input__wrapper:hover) {
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-  border-color: rgba(102, 126, 234, 0.3);
+  border-color: rgba(6, 182, 212, 0.3);
 }
 
 .custom-input :deep(.el-input__wrapper.is-focus) {
-  border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.1);
 }
 
 .register-btn {
   width: 100%;
   height: 50px;
   border-radius: 12px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--primary-gradient);
   border: none;
   font-weight: 600;
   font-size: 16px;
@@ -362,16 +388,15 @@ export default {
   justify-content: center;
   gap: 8px;
   transition: all 0.3s ease;
-  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+  box-shadow: var(--shadow-lg);
 }
 
 .register-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
+  background: var(--primary-gradient);
 }
 
 .register-btn:active {
-  transform: translateY(0);
+  background: var(--primary-gradient);
 }
 
 .register-footer {
@@ -382,7 +407,7 @@ export default {
 }
 
 .login-link {
-  color: #667eea;
+  color: var(--primary-color);
   text-decoration: none;
   font-size: 14px;
   font-weight: 500;
@@ -393,8 +418,8 @@ export default {
 }
 
 .login-link:hover {
-  color: #764ba2;
-  transform: translateX(4px);
+  color: var(--primary-dark);
+  background: var(--bg-secondary);
 }
 
 @keyframes slideInUp {

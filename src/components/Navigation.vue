@@ -74,15 +74,15 @@ export default {
   top: 0;
   z-index: 1000;
   backdrop-filter: blur(25px);
-  background: rgba(255, 255, 255, 0.95);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: var(--bg-overlay);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: var(--shadow-lg);
+  transition: all var(--transition-normal) cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .navigation-wrapper:hover {
   backdrop-filter: blur(30px);
-  background: rgba(255, 255, 255, 0.98);
+  background: var(--bg-primary);
 }
 
 .navigation-menu {
@@ -109,10 +109,11 @@ export default {
   margin: 0 6px !important;
   border-radius: 16px !important;
   font-weight: 600 !important;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transition: all var(--transition-normal) cubic-bezier(0.4, 0, 0.2, 1) !important;
   position: relative !important;
   overflow: hidden !important;
   backdrop-filter: blur(10px);
+  color: var(--text-secondary);
 }
 
 .menu-item::before {
@@ -137,9 +138,9 @@ export default {
   left: 50%;
   width: 0;
   height: 3px;
-  background: linear-gradient(90deg, #667eea, #764ba2);
+  background: var(--primary-gradient);
   border-radius: 2px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all var(--transition-normal) cubic-bezier(0.4, 0, 0.2, 1);
   transform: translateX(-50%);
 }
 
@@ -148,16 +149,16 @@ export default {
 }
 
 .menu-item:hover {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  background: var(--primary-gradient) !important;
   color: white !important;
   transform: translateY(-3px) scale(1.05) !important;
-  box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4) !important;
+  box-shadow: var(--shadow-xl) !important;
 }
 
 .menu-item.is-active {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  background: var(--primary-gradient) !important;
   color: white !important;
-  box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4) !important;
+  box-shadow: var(--shadow-xl) !important;
   transform: translateY(-3px) scale(1.05) !important;
 }
 
@@ -176,23 +177,23 @@ export default {
   align-items: center;
   gap: 12px;
   padding: 10px 18px;
-  background: rgba(255, 255, 255, 0.2);
+  background: var(--bg-secondary);
   border-radius: 24px;
   backdrop-filter: blur(15px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid var(--border-color);
+  transition: all var(--transition-normal) cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .user-info:hover {
-  background: rgba(255, 255, 255, 0.3);
+  background: var(--bg-tertiary);
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-md);
 }
 
 .user-avatar {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--primary-gradient);
   color: white;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all var(--transition-normal) cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .user-info:hover .user-avatar {
@@ -201,22 +202,22 @@ export default {
 
 .username {
   font-weight: 600;
-  color: #2c3e50;
+  color: var(--text-primary);
   font-size: 14px;
-  transition: all 0.3s ease;
+  transition: all var(--transition-normal) ease;
 }
 
 .user-info:hover .username {
-  color: #667eea;
+  color: var(--primary-color);
 }
 
 .logout-btn {
-  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%) !important;
+  background: var(--danger-color) !important;
   border: none !important;
   border-radius: 16px !important;
   padding: 10px 20px !important;
   font-weight: 600 !important;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transition: all var(--transition-normal) cubic-bezier(0.4, 0, 0.2, 1) !important;
   display: flex !important;
   align-items: center !important;
   gap: 8px !important;
@@ -241,13 +242,13 @@ export default {
 
 .logout-btn:hover {
   transform: translateY(-3px) scale(1.05) !important;
-  box-shadow: 0 12px 35px rgba(255, 107, 107, 0.5) !important;
-  background: linear-gradient(135deg, #ff5252 0%, #d32f2f 100%) !important;
+  box-shadow: var(--shadow-xl) !important;
+  background: #dc2626 !important;
 }
 
 .logout-btn:active {
   transform: translateY(-1px) scale(1.02) !important;
-  transition: all 0.1s ease !important;
+  transition: all var(--transition-fast) ease !important;
 }
 
 /* 動畫效果 */

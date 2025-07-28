@@ -198,16 +198,16 @@ export default {
 .shape {
   position: absolute;
   border-radius: 50%;
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(14, 165, 233, 0.1));
   animation: float 8s ease-in-out infinite;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all var(--transition-normal) cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
 }
 
 .shape:hover {
   transform: scale(1.2) rotate(10deg);
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
-  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(14, 165, 233, 0.2));
+  box-shadow: var(--shadow-md);
 }
 
 .shape-1 {
@@ -268,19 +268,19 @@ export default {
 }
 
 .change-password-card {
-  background: rgba(255, 255, 255, 0.95);
+  background: var(--bg-overlay);
   backdrop-filter: blur(25px);
   border-radius: 28px;
   padding: 48px;
-  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: var(--shadow-2xl);
+  border: 1px solid var(--border-color);
   animation: slideInUp 1s cubic-bezier(0.4, 0, 0.2, 1);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all var(--transition-slow) cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .change-password-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 35px 100px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-2xl);
   backdrop-filter: blur(30px);
 }
 
@@ -297,15 +297,15 @@ export default {
   width: 88px;
   height: 88px;
   margin: 0 auto;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--primary-gradient);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
   font-size: 36px;
-  box-shadow: 0 12px 40px rgba(102, 126, 234, 0.4);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--shadow-xl);
+  transition: all var(--transition-slow) cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
 }
@@ -327,26 +327,26 @@ export default {
 
 .logo-icon:hover {
   transform: scale(1.1) rotate(5deg);
-  box-shadow: 0 16px 50px rgba(102, 126, 234, 0.5);
+  box-shadow: var(--shadow-2xl);
 }
 
 .change-password-header h1 {
   margin: 0 0 12px 0;
-  color: #2c3e50;
+  color: var(--text-primary);
   font-size: 32px;
   font-weight: 700;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--primary-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  transition: all 0.3s ease;
+  transition: all var(--transition-normal) ease;
 }
 
 .change-password-header p {
   margin: 0;
-  color: #8e9aaf;
+  color: var(--text-muted);
   font-size: 16px;
-  transition: all 0.3s ease;
+  transition: all var(--transition-normal) ease;
 }
 
 .change-password-form {
@@ -355,29 +355,29 @@ export default {
 
 .custom-input :deep(.el-input__wrapper) {
   border-radius: 16px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--shadow-sm);
   border: 2px solid transparent;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  background: rgba(255, 255, 255, 0.8);
+  transition: all var(--transition-normal) cubic-bezier(0.4, 0, 0.2, 1);
+  background: var(--bg-secondary);
 }
 
 .custom-input :deep(.el-input__wrapper:hover) {
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-  border-color: rgba(102, 126, 234, 0.4);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(6, 182, 212, 0.4);
   transform: translateY(-2px);
-  background: rgba(255, 255, 255, 0.95);
+  background: var(--bg-primary);
 }
 
 .custom-input :deep(.el-input__wrapper.is-focus) {
-  border-color: #667eea;
-  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15);
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.15);
   transform: translateY(-2px);
-  background: white;
+  background: var(--bg-primary);
 }
 
 .custom-input :deep(.el-input__prefix) {
-  color: #667eea;
-  transition: all 0.3s ease;
+  color: var(--primary-color);
+  transition: all var(--transition-normal) ease;
 }
 
 .custom-input :deep(.el-input__wrapper:hover .el-input__prefix) {
@@ -388,7 +388,7 @@ export default {
   width: 100%;
   height: 56px;
   border-radius: 16px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--primary-gradient);
   border: none;
   font-weight: 600;
   font-size: 18px;
@@ -396,8 +396,8 @@ export default {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
+  transition: all var(--transition-normal) cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--shadow-lg);
   position: relative;
   overflow: hidden;
 }
@@ -419,12 +419,12 @@ export default {
 
 .change-password-btn:hover {
   transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 16px 45px rgba(102, 126, 234, 0.5);
+  box-shadow: var(--shadow-xl);
 }
 
 .change-password-btn:active {
   transform: translateY(-1px) scale(1.01);
-  transition: all 0.1s ease;
+  transition: all var(--transition-fast) ease;
 }
 
 @keyframes slideInUp {
