@@ -134,7 +134,7 @@ export default {
       try {
         this.loading = true
         const res = await api.get('/api/categories')
-        this.categories = res.data.categories
+        this.categories = res.data.data
       } catch {
         ElMessage.error('取得分類列表失敗')
       } finally {

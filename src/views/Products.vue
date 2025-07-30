@@ -38,13 +38,15 @@
               <el-tag type="info" effect="plain">{{ scope.row.id }}</el-tag>
             </template>
           </el-table-column>
-          <el-table-column prop="name" label="商品名稱" min-width="150">
+          <el-table-column prop="name" label="商品名稱" min-width="200">
             <template #default="scope">
               <div class="product-info">
                 <div class="product-icon">
                   <el-icon><Goods /></el-icon>
                 </div>
-                <span class="product-name">{{ scope.row.name }}</span>
+                <div class="product-details">
+                  <span class="product-name">{{ scope.row.name }}</span>
+                </div>
               </div>
             </template>
           </el-table-column>
@@ -169,7 +171,7 @@ export default {
       try {
         this.loading = true
         const res = await api.get('/api/products')
-        this.products = res.data.products
+        this.products = res.data.data
       } catch {
         ElMessage.error('取得商品列表失敗')
       } finally {
@@ -257,9 +259,14 @@ export default {
 
 .title-text h2 {
   margin: 0 0 4px 0;
-  color: var(--text-primary);
-  font-size: 24px;
-  font-weight: 600;
+  font-size: 28px;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #06b6d4, #0891b2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 0.5px;
 }
 
 .title-text p {
@@ -286,8 +293,8 @@ export default {
   box-shadow: var(--shadow-md);
 }
 
-.add-btn:hover {
-  transform: translateY(-2px);
+.add-btn {
+  transform: translateY(-1px);
   box-shadow: var(--shadow-lg);
 }
 
@@ -307,35 +314,82 @@ export default {
 .products-table :deep(.el-table__header th) {
   background: transparent !important;
   color: white !important;
-  font-weight: 600 !important;
+  font-weight: 700 !important;
+  font-size: 16px !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+  letter-spacing: 0.5px !important;
   border-bottom: none !important;
 }
 
-.products-table :deep(.el-table__body tr:hover) {
-  background: rgba(6, 182, 212, 0.05) !important;
+.products-table :deep(.el-table__body tr) {
+  background: rgba(6, 182, 212, 0.02) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.products-table :deep(.el-table__body tr .product-name) {
+  color: var(--primary-color);
+  transform: scale(1.01);
+  transition: all 0.3s ease;
+}
+
+.products-table :deep(.el-table__body tr .product-icon) {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(6, 182, 212, 0.4);
+  transition: all 0.3s ease;
 }
 
 .product-info {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
+  padding: 8px 0;
 }
 
 .product-icon {
-  width: 32px;
-  height: 32px;
-  background: var(--primary-gradient);
-  border-radius: 8px;
+  width: 45px;
+  height: 45px;
+  background: linear-gradient(135deg, #06b6d4, #0891b2);
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
-  font-size: 14px;
+  font-size: 18px;
+  box-shadow: 0 6px 16px rgba(6, 182, 212, 0.4);
+  flex-shrink: 0;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.product-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .product-name {
-  font-weight: 500;
-  color: var(--text-primary);
+  font-weight: 700;
+  color: #1a1a1a;
+  font-size: 18px;
+  line-height: 1.4;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #06b6d4, #0891b2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 0.5px;
+}
+
+.product-id {
+  font-size: 13px;
+  color: #06b6d4;
+  font-weight: 600;
+  background: rgba(6, 182, 212, 0.1);
+  padding: 4px 10px;
+  border-radius: 8px;
+  display: inline-block;
+  border: 1px solid rgba(6, 182, 212, 0.2);
+  box-shadow: 0 2px 4px rgba(6, 182, 212, 0.1);
 }
 
 .description-text {
@@ -356,11 +410,26 @@ export default {
 
 .product-dialog :deep(.el-dialog__title) {
   color: white;
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 20px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  letter-spacing: 0.5px;
 }
 
 .product-form {
   padding: 20px 0;
+}
+
+.product-form :deep(.el-form-item__label) {
+  font-weight: 700;
+  font-size: 16px;
+  color: #1a1a1a;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #06b6d4, #0891b2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 0.3px;
 }
 
 .form-input :deep(.el-input__wrapper) {
@@ -370,9 +439,9 @@ export default {
   transition: all 0.3s ease;
 }
 
-.form-input :deep(.el-input__wrapper:hover) {
+.form-input :deep(.el-input__wrapper) {
   box-shadow: var(--shadow-md);
-  border-color: rgba(6, 182, 212, 0.3);
+  border-color: rgba(6, 182, 212, 0.2);
 }
 
 .form-input :deep(.el-input__wrapper.is-focus) {
@@ -402,9 +471,9 @@ export default {
   resize: vertical;
 }
 
-.form-textarea :deep(.el-textarea__inner:hover) {
+.form-textarea :deep(.el-textarea__inner) {
   box-shadow: var(--shadow-md);
-  border-color: rgba(6, 182, 212, 0.3);
+  border-color: rgba(6, 182, 212, 0.2);
 }
 
 .form-textarea :deep(.el-textarea__inner:focus) {
@@ -439,7 +508,7 @@ export default {
   box-shadow: var(--shadow-md);
 }
 
-.confirm-btn:hover {
+.confirm-btn {
   transform: translateY(-1px);
   box-shadow: var(--shadow-lg);
 }
