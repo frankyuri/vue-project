@@ -112,7 +112,7 @@
 
 <script>
 import api from '../api'
-import { ElMessage } from 'element-plus'
+// import { ElMessage } from 'element-plus'
 import { User, Lock, UserFilled, Message, Right } from '@element-plus/icons-vue'
 
 export default {
@@ -167,19 +167,39 @@ export default {
         await this.$refs.formRef.validate()
         this.loading = true
 
+        // 先註冊
         await api.post('/auth/register', {
           username: this.form.username,
           password: this.form.password,
           email: this.form.email,
         })
 
-        ElMessage.success('註冊成功！')
-        this.$router.push('/login')
+        // 註冊成功後自動登入
+        const res = await api.post('/auth/login', {
+          username: this.form.username,
+          password: this.form.password,
+        })
+
+        // 取得 token
+        let token = null
+        if (res.data && typeof res.data === 'object') {
+          token =
+            res.data.token ||
+            res.data.data?.token ||
+            res.data.access_token ||
+            res.data.accessToken ||
+            res.data.jwt
+        }
+        if (!token) throw new Error('回應中沒有找到 token')
+
+        localStorage.setItem('token', token)
+        this.$message.success('註冊並自動登入成功！')
+        this.$router.push('/users')
       } catch (error) {
         if (error.response?.data?.message) {
-          ElMessage.error(error.response.data.message)
+          this.$message.error(error.response.data.message)
         } else {
-          ElMessage.error('註冊失敗，請稍後再試')
+          this.$message.error('註冊失敗，請稍後再試')
         }
       } finally {
         this.loading = false
